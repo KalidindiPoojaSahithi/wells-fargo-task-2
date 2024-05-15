@@ -1,86 +1,118 @@
 package com.wellsfargo.counselor.entity;
 
 
+import java.util.List;
+
 import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Advisor {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long advisorId;
 
     @Column(nullable = false)
-    private String firstName;
+    private String aFirstName;
 
     @Column(nullable = false)
-    private String lastName;
+    private String aLastName;
 
     @Column(nullable = false)
-    private String address;
+    private String aAddress;
 
     @Column(nullable = false)
-    private String phone;
-
+    private String aPhone;
+	@Column(nullable = false)
+    private String aEmail;
+    
     @Column(nullable = false)
-    private String email;
+    private String aPassword;
 
-    protected Advisor() {
+    @OneToMany(mappedBy = "advisor")
+    private List<Client> client;
 
-    }
+	public Advisor(long advisorId, String aFirstName, String aLastName, String aAddress, String aPhone, String aEmail,
+			String aPassword, List<Client> client) {
+		super();
+		this.advisorId = advisorId;
+		this.aFirstName = aFirstName;
+		this.aLastName = aLastName;
+		this.aAddress = aAddress;
+		this.aPhone = aPhone;
+		this.aEmail = aEmail;
+		this.aPassword = aPassword;
+		this.client = client;
+	}
 
-    public Advisor(String firstName, String lastName, String address, String phone, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-    }
+	public long getAdvisorId() {
+		return advisorId;
+	}
 
-    public Long getAdvisorId() {
-        return advisorId;
-    }
+	public String getaFirstName() {
+		return aFirstName;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public void setaFirstName(String aFirstName) {
+		this.aFirstName = aFirstName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public String getaLastName() {
+		return aLastName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public void setaLastName(String aLastName) {
+		this.aLastName = aLastName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public String getaAddress() {
+		return aAddress;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public void setaAddress(String aAddress) {
+		this.aAddress = aAddress;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public String getaPhone() {
+		return aPhone;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public void setaPhone(String aPhone) {
+		this.aPhone = aPhone;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public String getaEmail() {
+		return aEmail;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setaEmail(String aEmail) {
+		this.aEmail = aEmail;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getaPassword() {
+		return aPassword;
+	}
+
+	public void setaPassword(String aPassword) {
+		this.aPassword = aPassword;
+	}
+
+	public List<Client> getClient() {
+		return client;
+	}
+
+	public void setClient(List<Client> client) {
+		this.client = client;
+	}
+	
+	
+    
+	
+   
 }
